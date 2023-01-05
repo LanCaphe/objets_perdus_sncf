@@ -23,8 +23,10 @@ def app():
 
 if __name__ == '__main__':
     lg.info('the programs is launch')
-    print('the programs is launch')
-    cron()
+    print('the programs is launch') 
+    app()
+    # cron()
 
+    
     
     
