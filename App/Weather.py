@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy import Column, DateTime, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -17,12 +17,11 @@ Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
 class Weather(Base):
     __tablename__ = "weather"
     id = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(DateTime())
-    temp = Column()
+    temp = Column(Float())
 
 
 def list_years():
@@ -47,10 +46,6 @@ def dict_record(city):
         records_int = {int(k): v for k, v in records.items()}
     return records_int
 
-
-# city="LILLE-LESQUIN"
-# print(dict_record(city))
-
 def list_urls(city):
     years = list_years()
     records = dict_record(city)
@@ -63,9 +58,6 @@ def list_urls(city):
     return urls
 
 
-#print(list_urls("LILLE-LESQUIN"))
-
-
 def import_all_weather(city):
     urls = list_urls(city)
     for url in urls:
@@ -73,9 +65,10 @@ def import_all_weather(city):
         for each_data in data.json().get("records"):
             session.add(
                 Weather(
-                    date=each_data.get("fiedls").get("temp_present").get("date"),
-                    temp=each_data.get("fields").get("coordonnees").get("tc")))
-            session.commit()
+                    date=each_data.get("fields").get("date"),
+                    temp=each_data.get("fields").get("tc")))
+    session.commit()
+    print('weather done')
 
 
 def init_db():
@@ -83,3 +76,8 @@ def init_db():
     Base.metadata.drop_all(engine)
     print('create all databases')
     Base.metadata.create_all(engine)
+
+
+if __name__ == '__main__':
+    init_db()
+    # import_all_weather(city)
