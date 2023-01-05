@@ -18,8 +18,7 @@ session = Session()
 
 city = "Lille+Europe"
 URL_YEAR = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=objets-trouves-restitution&q=&rows=20" \
-
-           "&sort=date&facet=date&refine.gc_obo_gare_origine_r_name="
+           "&sort=date&facet=date&refine.gc_obo_gare_origine_r_name= "
 
 
 
@@ -54,7 +53,8 @@ def import_all_objet_perdu():
                 date=each_data.get("fields").get("date")))
     session.commit()
     lg.info('Import objet perdu done')
-                
+
+
 def init_db():
     lg.info('Drop all databases')
     Base.metadata.drop_all(engine)
