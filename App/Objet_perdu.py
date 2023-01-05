@@ -29,6 +29,7 @@ class Objet_perdu(Base):
     nature = Column(String)
     nom_recordtype = Column(String)
     date = Column(DateTime())
+
     
 def import_all_objet_perdu():
     data_year = requests.get(f"{URL_YEAR}{city}")
