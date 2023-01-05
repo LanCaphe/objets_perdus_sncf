@@ -17,7 +17,8 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 city = "Lille+Europe"
-URL_YEAR = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=objets-trouves-restitution&q=&rows=20&sort=date&facet=date&refine.gc_obo_gare_origine_r_name="
+URL_YEAR = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=objets-trouves-restitution&q=&rows=20" \
+           "&sort=date&facet=date&refine.gc_obo_gare_origine_r_name= "
 
 
 class Objet_perdu(Base):
@@ -29,6 +30,7 @@ class Objet_perdu(Base):
     nature = Column(String)
     nom_recordtype = Column(String)
     date = Column(DateTime())
+
     
 def import_all_objet_perdu():
     data_year = requests.get(f"{URL_YEAR}{city}")
