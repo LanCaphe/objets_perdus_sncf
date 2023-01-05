@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 import requests
 import os
-
+import logging as lg
 load_dotenv(override=True)
 
 
@@ -17,7 +17,10 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 city = "Lille+Europe"
-URL_YEAR = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=objets-trouves-restitution&q=&rows=20&sort=date&facet=date&refine.gc_obo_gare_origine_r_name="
+URL_YEAR = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=objets-trouves-restitution&q=&rows=20" \
+           "&sort=date&facet=date&refine.gc_obo_gare_origine_r_name= "
+
+
 
 
 class Objet_perdu(Base):
@@ -49,10 +52,11 @@ def import_all_objet_perdu():
                 nom_recordtype=each_data.get("fields").get("gc_obo_nom_recordtype_sc_c"),
                 date=each_data.get("fields").get("date")))
     session.commit()
-    print('Import objet perdu done')
-                
+    lg.info('Import objet perdu done')
+
+
 def init_db():
-    print('Drop all databases')
+    lg.info('Drop all databases')
     Base.metadata.drop_all(engine)
-    print('create all databases')
+    lg.info('create all databases')
     Base.metadata.create_all(engine)
