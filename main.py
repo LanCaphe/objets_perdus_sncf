@@ -1,4 +1,5 @@
-from App import Objet_perdu, Regularite, Wheather
+
+from App import Objet_perdu, Regularite, Weather
 
 import pycron
 import time
@@ -16,6 +17,7 @@ def app():
     Objet_perdu.init_db()
     lg.info('Import Objet perdu')
     Objet_perdu.import_all_objet_perdu()
+    Weather.import_all_weather("LILLE-LESQUIN")
 
     Weather.import_all_weather("LILLE-LESQUIN")
 
