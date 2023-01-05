@@ -1,4 +1,4 @@
-from App import Objet_perdu
+from App import Objet_perdu, Weather
 import pycron
 import time
 
@@ -14,6 +14,7 @@ def app():
     Objet_perdu.init_db()
     print('Import Objet perdu')
     Objet_perdu.import_all_objet_perdu()
+    Weather.import_all_weather("LILLE-LESQUIN")
 
 if __name__ == '__main__':
     cron()
