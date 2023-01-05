@@ -33,19 +33,15 @@ def import_all_Regularite_gare_depart():
     number_year = data_year.json().get("facet_groups")[0].get("facets")
     for each_year in number_year:
         year = each_year.get("name")
-        print(each_year)
         URL = f"https://ressources.data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&sort=date&facet=date&facet=service&facet=gare_depart&facet=gare_arrivee&refine.date={year}&refine.gare_depart={city}"
         data = requests.get(URL)
-        print('data')
         for each_data in data.json().get("records"):
-            print(each_data)
             session.add(
             Regularite(
                 nb_train_prevu=each_data.get("fields").get("nb_train_prevu"),
                 gare_arrivee=each_data.get("fields").get("gare_depart"),
                 gare_depart=each_data.get("fields").get("gare_arrivee"),
                 date=each_data.get("fields").get("date")))
-            print(f'{each_data}')
     session.commit()
     lg.info('Import gare depart de lille done')
     
@@ -55,19 +51,15 @@ def import_all_Regularite_gare_arrivee():
     number_year = data_year.json().get("facet_groups")[0].get("facets")
     for each_year in number_year:
         year = each_year.get("name")
-        print(each_year)
         URL = f"https://ressources.data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&sort=date&facet=date&facet=service&facet=gare_depart&facet=gare_arrivee&refine.date={year}&refine.gare_arrivee={city}"
         data = requests.get(URL)
-        print('data')
         for each_data in data.json().get("records"):
-            print(each_data)
             session.add(
             Regularite(
                 nb_train_prevu=each_data.get("fields").get("nb_train_prevu"),
                 gare_arrivee=each_data.get("fields").get("gare_depart"),
                 gare_depart=each_data.get("fields").get("gare_arrivee"),
                 date=each_data.get("fields").get("date")))
-            print(f'{each_data}')
     session.commit()
     lg.info('Import gare arrivee à Lille done')
                 
