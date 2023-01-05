@@ -17,11 +17,9 @@ def app():
     lg.info('Import Objet perdu')
     Objet_perdu.import_all_objet_perdu()
     Weather.import_all_weather("LILLE-LESQUIN")
-
-    Weather.import_all_weather("LILLE-LESQUIN")
-
     Regularite.import_all_Regularite_gare_depart()
     Regularite.import_all_Regularite_gare_arrivee()
+
 
 if __name__ == '__main__':
     lg.info('the programs is launch')
