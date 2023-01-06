@@ -4,9 +4,6 @@ from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
 
-import seaborn as sns
-sns.set_theme(style="whitegrid")
-
 load_dotenv(override=True)
 from prophet import Prophet
 

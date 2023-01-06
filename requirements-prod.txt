@@ -1,0 +1,9 @@
+requests
+psycopg2
+sqlalchemy
+load-dotenv
+pandas
+prophet
+pycron
+discord.py
+table2ascii
