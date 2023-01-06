@@ -7,3 +7,4 @@ prophet
 pycron
 discord.py
 table2ascii
+pystan
