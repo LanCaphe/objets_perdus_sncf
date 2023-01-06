@@ -3,8 +3,8 @@ psycopg2
 sqlalchemy
 load-dotenv
 pandas
-prophet
 pycron
 discord.py
 table2ascii
-pystan
+pystan==2.19.1.1
+fbprophet==0.7.1
